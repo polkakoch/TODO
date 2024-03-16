@@ -49,7 +49,7 @@ func loginHandler(c echo.Context) error {
 // Обработчик для обработки POST-запроса на страницу входа
 func postLoginHandler(c echo.Context) error {
 	// Получение данных из формы
-	login := c.FormValue("Email")
+	login := c.FormValue("Login")
 	password := c.FormValue("Password")
 
 	// Проверка данных пользователя 
