@@ -27,7 +27,6 @@
 			fetch('/home')
 				.then(response => response.text())
 				.then(html => {
-					// Замените содержимое текущей страницы на полученное содержимое
 					document.body.innerHTML = html;
 				})
 				.catch(error => {
