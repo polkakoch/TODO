@@ -18,13 +18,22 @@
     		<input autocomplete="off" name="password" id="password" class="input" type="password">
     	</div><br/>
 		<div>
-			<script> 
-        	function myFunc() { 
-            	window.location.href = "/temples/home.html"; 
-        	} 
-   			</script>
-			<button onclick="myFunc()">Зарегистрироваться</button>
+			<button id="regist">Зарегистрироваться</button>
 		</div><br/>
     </div>
+	<script>
+		document.getElementById('regist').addEventListener('click', function() {
+			// Логика для кнопки после нажатия на нее
+			fetch('/home')
+				.then(response => response.text())
+				.then(html => {
+					// Замените содержимое текущей страницы на полученное содержимое
+					document.body.innerHTML = html;
+				})
+				.catch(error => {
+					console.error('Ошибка при загрузке страницы:', error);
+			});
+	});
+	</script>
 </body>
 </html>
