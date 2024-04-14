@@ -1,12 +1,47 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Home Page</title>
-    </head>
-    <body>
-        <h1>Welcome to the Home Page!</h1>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-    </body>
-    </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div class="input-container">
+            <input type="text" id="new-todo" placeholder="Add a new task...">
+            <button id="add-todo">Add</button>
+        </div>
+        <ul id="todo-list" class="todo-list">
+            <!-- Задачи будут добавляться здесь -->
+        </ul>
+    </div>
+    <script>
+        document.getElementById('add-todo').addEventListener('click', addTodo);
+
+function addTodo() {
+    var todoInput = document.getElementById('new-todo');
+    var todoText = todoInput.value.trim();
+
+    if (todoText !== '') {
+        var todoItem = document.createElement('li');
+        todoItem.className = 'todo-item';
+        todoItem.innerHTML = `
+            <span>${todoText}</span>
+            <button onclick="removeTodo(this)">Remove</button>`;
+
+        var todoList = document.getElementById('todo-list');
+        todoList.appendChild(todoItem);
+
+        todoInput.value = '';
+    }
+}
+
+function removeTodo(button) {
+    var todoItem = button.parentElement;
+    todoItem.parentElement.removeChild(todoItem);
+}
+    </script>
+</body>
+</html>

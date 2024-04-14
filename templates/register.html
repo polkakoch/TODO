@@ -20,19 +20,27 @@
 		<div>
 			<button id="regist">Зарегистрироваться</button>
 		</div><br/>
+		<div id="message"></div>
     </div>
 	<script>
 		document.getElementById('regist').addEventListener('click', function() {
-			// Логика для кнопки после нажатия на нее
-			fetch('/home')
-				.then(response => response.text())
-				.then(html => {
-					document.body.innerHTML = html;
-				})
-				.catch(error => {
-					console.error('Ошибка при загрузке страницы:', error);
-			});
-	});
+			var login = document.getElementById('login').value;
+			var password = document.getElementById('password').value;
+
+			if (login.length <= 7 || password.length <= 7) {
+				document.getElementById('message').textContent = 'Пароль слишком маленький';
+			} else {
+				fetch('/home')
+					.then(response => response.text())
+					.then(html => {
+						// Замените содержимое текущей страницы на полученное содержимое
+						document.body.innerHTML = html;
+					})
+					.catch(error => {
+						console.error('Ошибка при загрузке страницы:', error);
+					});
+			}
+		});
 	</script>
 </body>
 </html>

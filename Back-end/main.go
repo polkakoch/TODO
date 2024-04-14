@@ -44,6 +44,7 @@ func homeHandler(c echo.Context) error {
 // Обработчик для страницы входа в аккаунт
 func loginHandler(c echo.Context) error {
 	return c.Render(http.StatusOK, "login.html", nil)
+
 }
 
 // Обработчик для обработки POST-запроса на страницу входа
@@ -52,13 +53,13 @@ func postLoginHandler(c echo.Context) error {
 	login := c.FormValue("Login")
 	password := c.FormValue("Password")
 
-	// Проверка данных пользователя 
+	// Проверка данных пользователя
 	if login == "login-test" && password == "password123" {
 		// Данные верны, перенаправление на страницу home
 		return c.Redirect(http.StatusSeeOther, "/home")
 	}
 
-	// Если данные неверны
+	// Данные неверны, возврат ошибки
 	return echo.NewHTTPError(http.StatusUnauthorized, "Invalid credentials")
 }
 
@@ -66,4 +67,3 @@ func postLoginHandler(c echo.Context) error {
 func registerHandler(c echo.Context) error {
 	return c.Render(http.StatusOK, "register.html", nil)
 }
-
